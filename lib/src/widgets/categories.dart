@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_foodapp/src/modules/category.dart';
 
-import '../commons.dart';
+import '../helpers/style.dart';
 import 'customtext.dart';
 
 List<Category> categorieslist=[

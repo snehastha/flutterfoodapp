@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_foodapp/src/commons.dart';
+import 'package:flutter_foodapp/src/helpers/system_navigation.dart';
+
 import 'package:flutter_foodapp/src/modules/products.dart';
 import 'package:flutter_foodapp/src/widgets/bestdeals_products.dart';
 import 'package:flutter_foodapp/src/widgets/bottom_navigation.dart';
@@ -8,6 +9,10 @@ import 'package:flutter_foodapp/src/widgets/categories.dart';
 import 'package:flutter_foodapp/src/widgets/customtext.dart';
 import 'package:flutter_foodapp/src/widgets/small_button.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+
+import '../helpers/style.dart';
+import 'bag.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -202,11 +207,14 @@ class _HomeState extends State<Home> {
               name: "Near by",
             ),
             BottomNavIcon(
+              onTap: (){
+                changeScreen(context,ShoppingBag() );
+              },
               image:"shopping.png",
               name: "Cart",
             ),
             BottomNavIcon(
-              image:"account",
+              image:"account.png",
               name: "Account",
             ),
 

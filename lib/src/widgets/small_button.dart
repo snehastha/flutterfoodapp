@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_foodapp/src/commons.dart';
+
+
+import '../helpers/style.dart';
 class SmallButton extends StatelessWidget {
   final IconData icon;
 

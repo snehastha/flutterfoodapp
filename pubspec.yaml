@@ -25,7 +25,12 @@ dependencies:
     sdk: flutter
 
 
-  carousel_pro: ^1.0.0  #no indention
+  carousel_pro: ^1.0.0  #no indencloud_firestore:
+  firebase_core: ^1.0.2
+  cloud_firestore: ^1.0.3
+  firebase_auth: ^1.0.1
+  provider: ^5.0.0
+
 
 
 
@@ -78,6 +83,8 @@ flutter:
     - images/target.png
     - images/McPlant_Burger.0.PNG
     - images/account.png
+    - images/logo.png
+    - images/login.png
 
 
 

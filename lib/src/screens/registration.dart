@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_foodapp/src/helpers/system_navigation.dart';
+import 'package:flutter_foodapp/src/providers/auth.dart';
 import 'package:flutter_foodapp/src/screens/login.dart';
+import 'package:flutter_foodapp/src/widgets/loading.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/customtext.dart';
+import 'home.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -10,11 +17,14 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _key =GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    final authProvider= Provider.of<AuthProvider>(context);
     return Scaffold(
+      key: _key,
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
+      body: authProvider.status==Status.Authenticating? Loading() :SingleChildScrollView(
         child: Column(
           children: <Widget>[
             SizedBox(
@@ -24,7 +34,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset("login.png", width: 150, height: 240,)
+                  Image.asset("images/login.png", width: 150, height: 240,)
                 ]
             ),
             Padding(
@@ -36,6 +46,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   child: Padding(padding: EdgeInsets.only(left: 10),
                       child: TextFormField(
+                        controller: authProvider.name,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "Username",
@@ -57,9 +68,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   child: Padding(padding: EdgeInsets.only(left: 10),
                       child: TextFormField(
+                        controller: authProvider.email,
                         decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: "Username",
+                            hintText: "Email",
                             icon: Icon(Icons.person)
 
                         ),
@@ -77,6 +89,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   child: Padding(padding: EdgeInsets.only(left: 10),
                       child: TextFormField(
+                        obscureText: true,
+                        controller: authProvider.password,
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "Password",
@@ -91,20 +105,33 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
             Padding(
               padding: const EdgeInsets.all(12),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.red,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(15)
+              child: GestureDetector(
+                onTap: () async{
+                  print("btn clicked");
+                  if(! await authProvider.signUp()){
+                    _key.currentState.showSnackBar
+                      (SnackBar(content: Text("Registration failed"))
+                    );
+                    return;
+                  }
+                  authProvider.cleanControllers();
+                  changeScreenReplacement(context, Home());
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.red,
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(15)
+                  ),
+                  child: Padding(padding: EdgeInsets.only(top: 10, bottom: 10),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          CustomText(
+                            text: "Register", color: Colors.white, size: 22,)
+                        ]
+                    ),),
                 ),
-                child: Padding(padding: EdgeInsets.only(top: 10, bottom: 10),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        CustomText(
-                          text: "Register", color: Colors.white, size: 22,)
-                      ]
-                  ),),
               ),
             ),
 

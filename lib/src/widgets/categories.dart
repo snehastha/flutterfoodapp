@@ -1,51 +1,74 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_foodapp/src/modules/category.dart';
+import 'package:flutter_foodapp/src/models/category.dart';
+import 'package:flutter_foodapp/src/widgets/loading.dart';
+import 'package:transparent_image/transparent_image.dart';
+
+
 
 import '../helpers/style.dart';
 import 'customtext.dart';
 
-List<Category> categorieslist=[
-  Category(name: "chinesefood", image:("chinese_food.PNG")),
-  Category(name: "indian", image:("indian.PNG")),
-  Category(name: "italian", image:("italian-food-1024.PNG")),
-  Category(name: "seafood", image:("seafood.PNG")),
-];
-class Categories extends StatelessWidget {
+class CategoryWidget extends StatelessWidget {
+  final CategoryModel category;
+
+  const CategoryWidget({Key key, this.category}) : super(key: key);
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 120,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: categorieslist.length,
-        itemBuilder: (_,index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-                children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                        color: white,
-                        boxShadow: [BoxShadow(
-                            color: red[50],
-                            offset: Offset(4, 6),
-                            blurRadius: 20
+    return Padding(
+      padding: const EdgeInsets.all(6),
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: 140,
+            height: 160,
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Stack(
+                  children: <Widget>[
+                    Positioned.fill(child: Align(
+                      alignment: Alignment.center,
+                      child: Loading(),
+                    )),
+                    Center(
+                      child: FadeInImage.memoryNetwork(placeholder:kTransparentImage, image: category.image),
+                    )
 
-                        )
-                        ]
-                    ),
+                  ],
+                )),
+          ),
 
-                    child: Padding(padding: EdgeInsets.all(4),
-                      child: Image.asset("images/${categorieslist[index].image}", width: 50,),)
+          Container(
+            width: 140,
+            height: 160,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                ),
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    Colors.black.withOpacity(0.6),
+                    Colors.black.withOpacity(0.6),
+                    Colors.black.withOpacity(0.6),
+                    Colors.black.withOpacity(0.4),
+                    Colors.black.withOpacity(0.1),
+                    Colors.black.withOpacity(0.05),
+                    Colors.black.withOpacity(0.025),
+                  ],
+                )),
+          ),
 
-                  ),
-                  SizedBox(height: 3,),
-                  CustomText(text:categorieslist[index].name, color: black,)
-                ],
-            ),
-          );
-        },
+          Positioned.fill(
+              child: Align(
+                  alignment: Alignment.center,
+                  child: CustomText(text: category.name, color: white, size: 26, weight: FontWeight.w300,)))
+        ],
       ),
-
-    );
+    ) ;
   }
 }
+
+

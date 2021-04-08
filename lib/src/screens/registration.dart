@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_foodapp/src/helpers/system_navigation.dart';
-import 'package:flutter_foodapp/src/providers/auth.dart';
+import 'package:flutter_foodapp/src/providers/user.dart';
 import 'package:flutter_foodapp/src/screens/login.dart';
 import 'package:flutter_foodapp/src/widgets/loading.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +20,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _key =GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final authProvider= Provider.of<AuthProvider>(context);
+    final authProvider= Provider.of<Userprovider>(context);
     return Scaffold(
       key: _key,
       backgroundColor: Colors.white,
@@ -114,8 +114,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     );
                     return;
                   }
-                  authProvider.cleanControllers();
-                  changeScreenReplacement(context, Home());
+                  authProvider.clearController();
+                  changeScreenReplacement(context, LoginScreen());
                 },
                 child: Container(
                   decoration: BoxDecoration(

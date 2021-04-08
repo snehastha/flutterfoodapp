@@ -30,6 +30,10 @@ class ProductProvider with ChangeNotifier{
   }
   Future search({String productName}) async{
     productsSearched=await _productServices.searchProducts(productName: productName);
+    print("THE NUMBER OF PRODUCTS DETECTED IS: ${productsSearched.length}");
+    print("THE NUMBER OF PRODUCTS DETECTED IS: ${productsSearched.length}");
+    print("THE NUMBER OF PRODUCTS DETECTED IS: ${productsSearched.length}");
+
     notifyListeners();
   }
 }

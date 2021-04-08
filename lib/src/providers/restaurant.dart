@@ -10,11 +10,11 @@ class RestaurantProvider with ChangeNotifier{
   RestaurantModel restaurant;
 
   RestaurantProvider.initialize(){
-    _loadRestaurants();
+    loadRestaurants();
 
   }
 
-  _loadRestaurants()async{
+  loadRestaurants()async{
     restaurants = await _restaurantServices.getRestaurants();
     notifyListeners();
   }

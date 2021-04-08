@@ -5,7 +5,7 @@ import 'package:flutter_foodapp/src/models/order.dart';
 
 class OrderServices{
   String collection = "orders";
-  FirebaseFirestore _firestore =FirebaseFirestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   void createOrder({String userId ,String id,String description,String status ,List<CartItemModel> cart, int totalPrice}) {
     List<Map> convertedCart = [];

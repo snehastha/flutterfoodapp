@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_foodapp/src/helpers/style.dart';
 import 'package:flutter_foodapp/src/helpers/system_navigation.dart';
+import 'package:flutter_foodapp/src/providers/category.dart';
+import 'package:flutter_foodapp/src/providers/product.dart';
+import 'package:flutter_foodapp/src/providers/restaurant.dart';
 import 'package:flutter_foodapp/src/providers/user.dart';
-import 'package:flutter_foodapp/src/providers/user.dart';
+import 'package:flutter_foodapp/src/screens/home.dart';
 import 'package:flutter_foodapp/src/screens/registration.dart';
 import 'package:flutter_foodapp/src/widgets/customtext.dart';
 import 'package:flutter_foodapp/src/widgets/loading.dart';
-
 import 'package:provider/provider.dart';
-
-import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -21,7 +21,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<Userprovider>(context);
+    final authProvider = Provider.of<UserProvider>(context);
+    final categoryProvider = Provider.of<CategoryProvider>(context);
+    final restaurantProvider = Provider.of<RestaurantProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
 
     return Scaffold(
       key: _key,
@@ -43,24 +46,24 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(
               height: 40,
             ),
-           Padding(
-             padding: const EdgeInsets.all(12),
-             child: Container(
-               decoration: BoxDecoration(
-                 border: Border.all(color: grey),
-                 borderRadius: BorderRadius.circular(15)
-               ),
-               child: Padding(padding: EdgeInsets.only(left: 10),
-               child: TextFormField(
-                 controller: authProvider.email,
-                 decoration: InputDecoration(
-                     border: InputBorder.none,
-                     hintText: "Email",
-                     icon: Icon(Icons.email)
-                 ),
-               ),),
-             ),
-           ),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: grey),
+                    borderRadius: BorderRadius.circular(15)
+                ),
+                child: Padding(padding: EdgeInsets.only(left: 10),
+                  child: TextFormField(
+                    controller: authProvider.email,
+                    decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Email",
+                        icon: Icon(Icons.email)
+                    ),
+                  ),),
+              ),
+            ),
 
             Padding(
               padding: const EdgeInsets.all(12),
@@ -86,16 +89,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: ()async{
                   if(!await authProvider.signIn()){
                     _key.currentState.showSnackBar(
-                      SnackBar(content: Text("Login failed!"))
+                        SnackBar(content: Text("Login failed!"))
                     );
                     return;
                   }
-
+                  categoryProvider.loadCategories();
+                  restaurantProvider.loadSingleRestaurant();
+                  authProvider.clearController();
+                  productProvider.loadProductsByRestaurant();
+                  productProvider.loadProductsByCategory();
                   changeScreenReplacement(context, Home());
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: red,
+                      color: red,
                       border: Border.all(color: grey),
                       borderRadius: BorderRadius.circular(15)
                   ),

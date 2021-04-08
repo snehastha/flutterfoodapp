@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<Userprovider>(context);
+    final user = Provider.of<UserProvider>(context);
     final app = Provider.of<AppProvider>(context);
     return Scaffold(
       appBar: AppBar(

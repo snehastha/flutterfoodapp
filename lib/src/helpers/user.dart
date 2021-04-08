@@ -1,21 +1,21 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_foodapp/src/models/cart_item.dart';
 import 'package:flutter_foodapp/src/models/user.dart';
 
 class UserServices{
   String collection = "users";
-  FirebaseFirestore _firestore= FirebaseFirestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-
-  void createUser(Map<String , dynamic> values){
-    String id =values["id"];
+  void createUser(Map<String, dynamic> values) {
+    String id = values["id"];
     _firestore.collection(collection).doc(id).set(values);
   }
 
-  void UpdateUserData(Map<String,dynamic>values){
+  void updateUserData(Map<String, dynamic> values){
     _firestore.collection(collection).doc(values['id']).update(values);
   }
+
+
   void addToCart({String userId, CartItemModel cartItem}){
     print("THE USER ID IS: $userId");
     print("cart items are: ${cartItem.toString()}");
@@ -33,10 +33,7 @@ class UserServices{
   }
 
 
-  Future <UserModel> getUserById(String id)=> _firestore.collection(collection).doc(id).get().then((doc){
+  Future<UserModel> getUserById(String id) => _firestore.collection(collection).doc(id).get().then((doc){
     return UserModel.fromSnapshot(doc);
-
   });
-
-
 }

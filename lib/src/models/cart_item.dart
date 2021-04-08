@@ -12,11 +12,11 @@ class CartItemModel {
 
 
 
-  int _id;
+  String _id;
   String _name;
   String _image;
-  int _productId;
-  int _restaurantId;
+  String _productId;
+  String _restaurantId;
   int _totalRestaurantSale;
   int _quantity;
   int _price;
@@ -24,15 +24,15 @@ class CartItemModel {
 
 
   //  getters
-  int get id => _id;
+  String get id => _id;
 
   String get name => _name;
 
   String get image => _image;
 
-  int get productId => _productId;
+  String get productId => _productId;
 
-  int get restaurantId => _restaurantId;
+  String get restaurantId => _restaurantId;
 
   int get price => _price;
 

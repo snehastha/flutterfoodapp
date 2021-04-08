@@ -17,6 +17,7 @@ import 'package:flutter_foodapp/src/widgets/featured_products.dart';
 import 'package:flutter_foodapp/src/widgets/loading.dart';
 import 'package:flutter_foodapp/src/widgets/restaurant.dart';
 import 'package:provider/provider.dart';
+
 import 'cart.dart';
 import 'categoy.dart';
 import 'login.dart';
@@ -30,7 +31,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<Userprovider>(context);
+    final user = Provider.of<UserProvider>(context);
     final app = Provider.of<AppProvider>(context);
     final categoryProvider = Provider.of<CategoryProvider>(context);
     final restaurantProvider = Provider.of<RestaurantProvider>(context);
@@ -260,7 +261,7 @@ class _HomeState extends State<Home> {
                   app.changeLoading();
 
                   await productProvider.loadProductsByRestaurant(
-                      restaurantId: item.id.toString());
+                      restaurantId: item.id);
                   app.changeLoading();
 
                   changeScreen(

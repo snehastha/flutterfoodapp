@@ -1,6 +1,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'cart_item.dart';
+
 class UserModel{
   static const ID = "id";
   static const NAME = "name";
@@ -26,15 +28,15 @@ class UserModel{
   String get stripeId => _stripeId;
 
 //  public variable
-  List cart;
+  List<CartItemModel> cart;
   int totalCartPrice;
 
   UserModel.fromSnapshot(DocumentSnapshot snapshot){
     _name = snapshot.data()[NAME];
     _email = snapshot.data()[EMAIL];
-    _id = snapshot.data()[ID.compareTo(ID)];
+    _id = snapshot.data()[ID];
     _stripeId = snapshot.data()[STRIPE_ID];
-    cart = snapshot.data()[CART] ;
+    cart = _convertCartItems(snapshot.data()[CART]) ?? [];
     totalCartPrice = snapshot.data()[CART] == null ? 0 :getTotalPrice(cart: snapshot.data()[CART]);
   }
 
@@ -46,16 +48,24 @@ class UserModel{
       _priceSum += cartItem["price"] * cartItem["quantity"];
     }
 
-    int total =_priceSum;
+    int total = _priceSum;
 
-    print("THE TOTAL IS Rs.total");
-    print("THE TOTAL IS Rs.total");
-    print("THE TOTAL IS Rs.total");
-    print("THE TOTAL IS Rs.total");
-    print("THE TOTAL IS Rs.total");
+    print("THE TOTAL IS $total");
+    print("THE TOTAL IS $total");
+    print("THE TOTAL IS $total");
+    print("THE TOTAL IS $total");
+    print("THE TOTAL IS $total");
 
     return total;
   }
+  List<CartItemModel> _convertCartItems(List cart){
+    List<CartItemModel> convertedCart = [];
+    for(Map cartItem in cart){
+      convertedCart.add(CartItemModel.fromMap(cartItem));
+    }
+    return convertedCart;
+  }
+
 
 }
 //

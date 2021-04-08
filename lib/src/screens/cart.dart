@@ -6,7 +6,6 @@ import 'package:flutter_foodapp/src/providers/app.dart';
 import 'package:flutter_foodapp/src/providers/user.dart';
 import 'package:flutter_foodapp/src/widgets/customtext.dart';
 import 'package:flutter_foodapp/src/widgets/loading.dart';
-
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -21,8 +20,10 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<Userprovider>(context);
+    final user = Provider.of<UserProvider>(context);
     final app = Provider.of<AppProvider>(context);
+
+
 
     return Scaffold(
       key: _key,
@@ -85,7 +86,7 @@ class _CartScreenState extends State<CartScreen> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                  text: "\Rs{user.userModel.cart[index].price} \n\n",
+                                  text: "\$${user.userModel.cart[index].price / 100} \n\n",
                                   style: TextStyle(
                                       color: black,
                                       fontSize: 18,
@@ -115,7 +116,6 @@ class _CartScreenState extends State<CartScreen> {
                                 if(value){
                                   user.reloadUserModel();
                                   print("Item added to cart");
-                                  // ignore: deprecated_member_use
                                   _key.currentState.showSnackBar(
                                       SnackBar(content: Text("Removed from Cart!"))
                                   );
@@ -150,7 +150,7 @@ class _CartScreenState extends State<CartScreen> {
                           fontSize: 22,
                           fontWeight: FontWeight.w400)),
                   TextSpan(
-                      text: " \RS ${user.userModel.totalCartPrice / 100}",
+                      text: " \$${user.userModel.totalCartPrice / 100}",
                       style: TextStyle(
                           color: primary,
                           fontSize: 22,
@@ -160,7 +160,6 @@ class _CartScreenState extends State<CartScreen> {
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20), color: primary),
-                // ignore: deprecated_member_use
                 child: FlatButton(
                     onPressed: () {
                       if(user.userModel.totalCartPrice == 0){
@@ -182,7 +181,7 @@ class _CartScreenState extends State<CartScreen> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: <Widget>[
-                                            Text('Your cart is empty', textAlign: TextAlign.center,),
+                                            Text('Your cart is emty', textAlign: TextAlign.center,),
                                           ],
                                         ),
                                       ],
@@ -208,11 +207,10 @@ class _CartScreenState extends State<CartScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('You will be charged \Rs{user.userModel.totalCartPrice } upon delivery!', textAlign: TextAlign.center,),
+                                      Text('You will be charged \$${user.userModel.totalCartPrice / 100} upon delivery!', textAlign: TextAlign.center,),
 
                                       SizedBox(
                                         width: 320.0,
-                                        // ignore: deprecated_member_use
                                         child: RaisedButton(
                                           onPressed: () async{
                                             var uuid = Uuid();
@@ -230,7 +228,6 @@ class _CartScreenState extends State<CartScreen> {
                                               if(value){
                                                 user.reloadUserModel();
                                                 print("Item added to cart");
-                                                // ignore: deprecated_member_use
                                                 _key.currentState.showSnackBar(
                                                     SnackBar(content: Text("Removed from Cart!"))
                                                 );
@@ -238,7 +235,6 @@ class _CartScreenState extends State<CartScreen> {
                                                 print("ITEM WAS NOT REMOVED");
                                               }
                                             }
-                                            // ignore: deprecated_member_use
                                             _key.currentState.showSnackBar(
                                                 SnackBar(content: Text("Order created!"))
                                             );
@@ -254,7 +250,6 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                       SizedBox(
                                         width: 320.0,
-                                        // ignore: deprecated_member_use
                                         child: RaisedButton(
                                             onPressed: () {
                                               Navigator.pop(context);

@@ -20,7 +20,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _key =GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    final authProvider= Provider.of<Userprovider>(context);
+    final authProvider= Provider.of<UserProvider>(context);
     return Scaffold(
       key: _key,
       backgroundColor: Colors.white,

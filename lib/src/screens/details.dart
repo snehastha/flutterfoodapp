@@ -29,7 +29,7 @@ class _DetailsState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<Userprovider>(context);
+    final user = Provider.of<UserProvider>(context);
     final app = Provider.of<AppProvider>(context);
 
     return Scaffold(

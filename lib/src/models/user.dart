@@ -32,8 +32,8 @@ class UserModel{
   int totalCartPrice;
 
   UserModel.fromSnapshot(DocumentSnapshot snapshot){
-    _name = snapshot.data()[NAME.compareTo(NAME)];
-    _email = snapshot.data()[EMAIL.compareTo(EMAIL)];
+    _name = snapshot.data()[NAME];
+    _email = snapshot.data()[EMAIL];
     _id = snapshot.data()[ID.compareTo(ID)];
     _stripeId = snapshot.data()[STRIPE_ID];
     cart = _convertCartItems(snapshot.data()[CART]) ?? [];

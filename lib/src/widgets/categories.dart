@@ -31,7 +31,8 @@ class CategoryWidget extends StatelessWidget {
                       child: Loading(),
                     )),
                     Center(
-                      child: FadeInImage.memoryNetwork(placeholder:kTransparentImage, image: category.image),
+                      child: FadeInImage.memoryNetwork(placeholder:kTransparentImage,
+                          image: category.image),
                     )
 
                   ],

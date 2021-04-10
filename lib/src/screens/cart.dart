@@ -39,7 +39,7 @@ class _CartScreenState extends State<CartScreen> {
             }),
       ),
       backgroundColor: white,
-      body: app.isLoading ? Loading() : ListView.builder(
+      body:app.isLoading ? Loading(): ListView.builder(
           itemCount: user.userModel.cart.length,
           itemBuilder: (_, index) {
 
@@ -86,7 +86,7 @@ class _CartScreenState extends State<CartScreen> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
                               TextSpan(
-                                  text: "\$${user.userModel.cart[index].price / 100} \n\n",
+                                  text: "\Rs${user.userModel.cart[index].price} \n",
                                   style: TextStyle(
                                       color: black,
                                       fontSize: 18,
@@ -150,7 +150,7 @@ class _CartScreenState extends State<CartScreen> {
                           fontSize: 22,
                           fontWeight: FontWeight.w400)),
                   TextSpan(
-                      text: " \$${user.userModel.totalCartPrice / 100}",
+                      text: "\Rs ${user.userModel.totalCartPrice}",
                       style: TextStyle(
                           color: primary,
                           fontSize: 22,
@@ -181,7 +181,7 @@ class _CartScreenState extends State<CartScreen> {
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: <Widget>[
-                                            Text('Your cart is emty', textAlign: TextAlign.center,),
+                                            Text('Your cart is empty', textAlign: TextAlign.center,),
                                           ],
                                         ),
                                       ],
@@ -207,7 +207,7 @@ class _CartScreenState extends State<CartScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('You will be charged \$${user.userModel.totalCartPrice / 100} upon delivery!', textAlign: TextAlign.center,),
+                                      Text('You will be charged \Rs${user.userModel.totalCartPrice / 100} upon delivery!', textAlign: TextAlign.center,),
 
                                       SizedBox(
                                         width: 320.0,

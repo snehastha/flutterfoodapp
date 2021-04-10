@@ -41,13 +41,13 @@ class _DetailsState extends State<Details> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-              changeScreen(context, CartScreen());
+            onPressed: () async {
+              changeScreen(context,CartScreen());
             },
           ),
 
         ],
-        leading: IconButton(icon: Icon(Icons.close), onPressed: (){Navigator.pop(context);}),
+        leading: IconButton(icon: Icon(Icons.close), onPressed:(){Navigator.pop(context);}),
       ),
       backgroundColor: white,
       body: SafeArea(

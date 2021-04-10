@@ -79,14 +79,14 @@ class RestaurantScreen extends StatelessWidget {
                       bottom: 60,
                       child: Align(
                           alignment: Alignment.bottomCenter,
-                          child: CustomText(text: restaurantModel.name, color: white, size: 26, weight: FontWeight.w300,))),
+                          child: CustomText(text: restaurantModel.name, color: white, size: 26, weight: FontWeight.w300,)?? 'default value')),
 
                   // average price
                   Positioned.fill(
                       bottom: 40,
                       child: Align(
                           alignment: Alignment.bottomCenter,
-                          child: CustomText(text: "Average Price: \Rs" + restaurantModel.avgPrice.toString(), color: white, size: 18, weight: FontWeight.w300,))),
+                          child: CustomText(text: "Average Price: \Rs" + restaurantModel.avgPrice.toString(), color: white, size: 18, weight: FontWeight.w300,)?? 'default value')),
 
                   // rating widget
                   Positioned.fill(

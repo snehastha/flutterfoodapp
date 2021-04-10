@@ -30,7 +30,7 @@ class RestaurantModel {
 
   List<String> get userLikes => _userLikes;
 
-  double get avgPrice => _avgPrice;
+    double get avgPrice => _avgPrice;
 
   double get rating => _rating;
 
@@ -43,8 +43,8 @@ class RestaurantModel {
 
 
   RestaurantModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _id = snapshot.data()[ID];
-    _name = snapshot.data()[NAME];
+    _id = snapshot.data()[ID.compareTo(ID)];
+    _name = snapshot.data()[NAME.compareTo(NAME)];
     _image = snapshot.data()[IMAGE];
     _avgPrice = snapshot.data()[AVG_PRICE.compareTo(AVG_PRICE)];
     _rating = snapshot.data()[RATING];

@@ -49,11 +49,11 @@ class CartItemModel {
     _price = data[PRICE];
     _quantity = data[QUANTITY];
     _totalRestaurantSale = data[TOTAL_RESTAURANT_SALES];
-    _restaurantId = data[RESTAURANT_ID];
+    _restaurantId = data[RESTAURANT_ID.compareTo(RESTAURANT_ID)];
   }
 
   Map toMap() => {
-    ID: _id,
+    ID:  _id,
     IMAGE: _image,
     NAME: _name,
     PRODUCT_ID: _productId,

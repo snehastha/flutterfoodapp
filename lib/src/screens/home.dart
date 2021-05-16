@@ -51,8 +51,8 @@ class _HomeState extends State<Home> {
             children: <Widget>[
               IconButton(
                 icon: Icon(Icons.shopping_cart),
-                onPressed: () {
-                  changeScreen(context, CartScreen());
+                onPressed: (){
+                  changeScreen(context,CartScreen());
                 },
               ),
             ],
@@ -93,7 +93,7 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               onTap: () {
-                changeScreen(context, CartScreen());
+                changeScreen(context,CartScreen());
               },
               leading: Icon(Icons.shopping_cart),
               title: CustomText(text: "Cart"),

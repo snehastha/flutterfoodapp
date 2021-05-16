@@ -1,4 +1,3 @@
-import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_foodapp/src/helpers/system_navigation.dart';
 import 'package:flutter_foodapp/src/models/products.dart';
@@ -7,9 +6,6 @@ import 'package:flutter_foodapp/src/providers/user.dart';
 import 'package:flutter_foodapp/src/widgets/customtext.dart';
 import 'package:flutter_foodapp/src/widgets/loading.dart';
 import 'package:provider/provider.dart';
-
-
-
 import '../helpers/style.dart';
 import 'cart.dart';
 
@@ -41,12 +37,14 @@ class _DetailsState extends State<Details> {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.shopping_cart),
-            onPressed: () async {
-              changeScreen(context,CartScreen());
+            onPressed:()async{
+              changeScreen( context,CartScreen());
             },
+
           ),
 
         ],
+
         leading: IconButton(icon: Icon(Icons.close), onPressed:(){Navigator.pop(context);}),
       ),
       backgroundColor: white,

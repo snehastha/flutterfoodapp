@@ -56,7 +56,6 @@ class ProductModel {
     _image = snapshot.data()[IMAGE];
     _restaurant = snapshot.data()[RESTAURANT];
     _restaurantId = snapshot.data()[RESTAURANT_ID.compareTo(RESTAURANT_ID)];
-
     _description = snapshot.data()[DESCRIPTION];
     _id = snapshot.data()[ID.compareTo(ID)];
     _featured = snapshot.data()[FEATURED];

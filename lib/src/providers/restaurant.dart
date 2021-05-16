@@ -28,6 +28,4 @@ class RestaurantProvider with ChangeNotifier{
     print("RESTOS ARE: ${searchedRestaurants.length}");
     notifyListeners();
   }
-
-
 }

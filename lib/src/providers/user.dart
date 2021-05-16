@@ -1,14 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_foodapp/src/helpers/order.dart';
 import 'package:flutter_foodapp/src/helpers/user.dart';
 import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_foodapp/src/models/cart_item.dart';
 import 'package:flutter_foodapp/src/models/order.dart';
 import 'package:flutter_foodapp/src/models/products.dart';
@@ -115,8 +111,8 @@ class UserProvider with ChangeNotifier {
   }
 
   Future<bool> addToCard({ProductModel product, int quantity})async{
-    print("THE PRODUCT IS: Rs.{product.toString()}");
-    print("THE qty IS: Rs.{quantity.toString()}");
+    print("THE PRODUCT iS: ${product.toString()}");
+    print("THE qty : ${quantity.toString()}");
 
     try{
       var uuid = Uuid();
@@ -142,7 +138,7 @@ class UserProvider with ChangeNotifier {
 
       return true;
     }catch(e){
-      print("THE ERROR Rs.{e.toString()}");
+      print("THE ERROR :${e.toString()}");
       return false;
     }
 

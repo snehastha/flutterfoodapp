@@ -13,7 +13,6 @@ class CartScreen extends StatefulWidget {
   @override
   _CartScreenState createState() => _CartScreenState();
 }
-
 class _CartScreenState extends State<CartScreen> {
   final _key = GlobalKey<ScaffoldState>();
   OrderServices _orderServices = OrderServices();
@@ -22,8 +21,6 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context);
     final app = Provider.of<AppProvider>(context);
-
-
 
     return Scaffold(
       key: _key,
@@ -34,15 +31,16 @@ class _CartScreenState extends State<CartScreen> {
         title: CustomText(text: "Shopping Cart"),
         leading: IconButton(
             icon: Icon(Icons.close),
-            onPressed: () {
+            onPressed: (){
               Navigator.pop(context);
             }),
       ),
       backgroundColor: white,
-      body:app.isLoading ? Loading(): ListView.builder(
+      body:app.isLoading? Loading():
+      ListView.builder(
           itemCount: user.userModel.cart.length,
-          itemBuilder: (_, index) {
-
+          itemBuilder: (_,index)
+          {
             return Padding(
               padding: const EdgeInsets.all(16),
               child: Container(
